@@ -1,0 +1,159 @@
+from langchain.document_loaders import PyPDFLoader
+#load document
+loader= PyPDFLoader(r"F:\Zain Data\All programming language\LangChain\Biology.pdf")
+pages=loader.load()
+len(pages)
+# for first page and print
+page=pages[0]
+# for 5000 character of 1 page 
+print(page.page_content[:5000])
+# load the 2 page and print
+page=pages[2]
+print(page.page_content[:5000])
+# for load first 5 page and print
+for i in range(5):
+    print(page.page_content[:5000])
+# for load first 34 page 
+for i in range(34):
+    print(page.page_content[:5000])
+# for all page load and print
+for i in range(max(34,len(pages))):
+    print(page.page_content[:5000])
+#for detail of document
+page.metadata
+from langchain.document_loaders import TextLoader
+loader=TextLoader(r"F:\Zain Data\All programming language\LangChain\Brain.txt")
+
+text=loader.load()
+len(text)
+# for load first text page and print and same as text[5] for load 5
+page=text[0]
+print(page.page_content[:5000])
+
+from langchain.document_loaders import Docx2txtLoader
+
+loader = Docx2txtLoader(r"F:\Zain Data\All programming language\LangChain\faraday.docx")
+
+
+doc=loader.load()
+page=doc[0]
+print(page.page_content[:5000])
+len(doc)
+ # for load , .csv, .xml, html and print it etc.
+from langchain.document_loaders import UnstructuredFileLoader
+
+loader = UnstructuredFileLoader(r"F:\Zain Data\All programming language\LangChain\student.csv") 
+
+
+csv=loader.load()
+len(csv)
+page=csv[0]
+print(page.page_content[:5000])
+ # for load , .csv, .xml, html and print it etc.
+from langchain.document_loaders import UnstructuredFileLoader
+
+loader = UnstructuredFileLoader(r"F:\Zain Data\All programming language\LangChain\index.html") 
+html=loader.load()
+len(html)
+page=html[0]
+print(page.page_content[:5000])
+ # for load , .csv, .xml, html and print it etc.
+from langchain.document_loaders import UnstructuredFileLoader
+
+loader = UnstructuredFileLoader(r"F:\Zain Data\All programming language\LangChain\student_data.xlsx") 
+excel=loader.load()
+len(excel)
+page=excel[0]
+print(page.page_content[:5000])
+#for youtube audio
+import imageio_ffmpeg
+print(imageio_ffmpeg.get_ffmpeg_exe())
+
+#download audio file from youtube
+import subprocess
+import os
+
+# Set the video URL
+video_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+
+# Set output directory for the downloaded audio (including 'Audio' subfolder inside 'Videos' folder)
+output_dir = r"C:\Users\Ic\Videos\Audio"  # This will create the 'Audio' folder inside 'Videos'
+
+# Ensure the 'Audio' folder exists, create if not
+os.makedirs(output_dir, exist_ok=True)
+
+# Set ffmpeg location (ensure this path is correct for your system)
+ffmpeg_location = r"f:\Zain Data\All programming language\LangChain\venv\lib\site-packages\imageio_ffmpeg\binaries"
+
+# Create the yt-dlp command
+command = f'yt-dlp -x --audio-format mp3 --ffmpeg-location "{ffmpeg_location}" -o "{output_dir}\\%(title)s.%(ext)s" {video_url}'
+
+# Run the yt-dlp command to download audio
+subprocess.run(command, shell=True)
+
+import whisper
+
+model = whisper.load_model("base")
+
+# Disable FP16 explicitly by setting fp16=False
+result = model.transcribe(r"F:\Zain Data\All programming language\LangChain\a.webm", fp16=False)
+
+print(result['text'][:1000])
+
+
+
+
+#download audio file from youtube
+import subprocess
+import os
+
+# Set the video URL
+video_url = "https://www.youtube.com/watch?v=-2RAq5o5pwc"
+
+# Set output directory for the downloaded audio (including 'Audio' subfolder inside 'Videos' folder)
+output_dir = r"C:\Users\Ic\Videos\Audio"  # This will create the 'Audio' folder inside 'Videos'
+
+# Ensure the 'Audio' folder exists, create if not
+os.makedirs(output_dir, exist_ok=True)
+
+# Set ffmpeg location (ensure this path is correct for your system)
+ffmpeg_location = r"f:\Zain Data\All programming language\LangChain\venv\lib\site-packages\imageio_ffmpeg\binaries"
+
+# Create the yt-dlp command
+command = f'yt-dlp -x --audio-format mp3 --ffmpeg-location "{ffmpeg_location}" -o "{output_dir}\\%(title)s.%(ext)s" {video_url}'
+
+# Run the yt-dlp command to download audio
+subprocess.run(command, shell=True)
+
+import whisper
+
+model = whisper.load_model("base")
+
+# Disable FP16 explicitly by setting fp16=False
+result = model.transcribe(r"F:\Zain Data\All programming language\LangChain\jhol.webm", fp16=False)
+
+print(result['text'][:1000])
+
+
+
+
+#web base loader
+from langchain_community.document_loaders import WebBaseLoader
+
+# Initialize the loader with the target URL
+loader = WebBaseLoader("https://www.example.com")
+
+# Load the content into Document objects
+docs = loader.load()
+
+# Display the content of the first document
+print(docs[0].page_content[:1000])  # Prints the first 1000 characters
+
+# notiondirectory for html page
+from langchain_community.document_loaders import WebBaseLoader
+
+loader = WebBaseLoader("https://www.nytimes.com")  # or any public website
+docs = loader.load()
+
+print(docs[0].page_content[:1000])
+
